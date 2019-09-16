@@ -24,14 +24,17 @@ app.use(session({
     mongooseConnection: db
   })
 }));
-
+app.use(express.static(__dirname + '/public'))
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');	
+app.engine('pug', require('pug').__express)
+app.engine('ejs', require('ejs').__express)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(__dirname + '/views'));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 var index = require('./routes/index');
 app.use('/', index);

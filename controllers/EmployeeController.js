@@ -42,7 +42,7 @@ employeeController.save = function(req, res) {
       res.render("../views/employees/create");
     } else {
       console.log("Successfully created an employee.");
-      res.redirect("/employees/show/"+ employee._id);
+      res.redirect("/employees");
     }
   });
 };
@@ -66,7 +66,8 @@ employeeController.update = function(req, res) {
       console.log(err);
       res.render("../views/employees/edit", {employee: req.body});
     }
-    res.redirect("/employees/show/"+employee._id);
+    console.log("Successfully edit an employee.");
+    res.redirect("/employees");
   });
 };
 

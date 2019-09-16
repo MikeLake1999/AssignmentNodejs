@@ -1,0 +1,55 @@
+doctype html
+head
+  title Forget
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  link(rel='stylesheet' href='./css/main.css')
+  
+  script(type='text/javascript').
+    $(document).ready(function(){
+    $( "#form2" ).submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+    type: 'POST',
+    url: '/forgetpass',
+    data: $('#form2').serialize(),
+    dataType: "json",
+    success: function(response){
+    //alert("a");
+    //console.log(response.Success);
+    $('#form2')[0].reset();
+    //alert("abc");
+    document.getElementById("check").innerHTML=response.Success;
+    setTimeout(function(){
+    document.getElementById("check").innerHTML="";
+    },3000);
+    if (response.Success=="Password changed!") {
+    document.getElementById("aa").click();
+    };
+    },
+    error: function() {
+    }
+    })
+    });
+    });
+.login-form
+  div
+  .form-group
+    form#form2(method='post')
+      h2.text-center Reset Password
+      input.form-control(type='text', name='email', placeholder='E-mail', required='')
+      br
+      input.form-control(type='password', name='password', placeholder='Password', required='')
+      br
+      input.form-control(type='password', name='passwordConf', placeholder='Confirm Password', required='')
+      br
+      button.btn.btn-primary.btn-block(type='submit') Submit
+  .mssg.bg-danger
+    span#check
+  #LangTable
+    a#aa(href='/login')
+  div
+    
+    p.text-center
+      a(href='/login') Back To Login

@@ -3,12 +3,12 @@ var router = express.Router();
 var User = require('../models/user');
 
 router.get('/', function (req, res, next) {
-	return res.render('index.ejs');
+	return res.render('index.pug');
 });
 
 
 router.get('/register', function (req, res, next) {
-	return res.render('register.ejs');
+	return res.render('register.pug');
 });
 
 router.post('/register', function (req, res, next) {
@@ -62,7 +62,7 @@ router.post('/register', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-	return res.render('login.ejs');
+	return res.render('login.pug');
 });
 
 router.post('/login', function (req, res, next) {
@@ -94,7 +94,7 @@ router.get('/profile', function (req, res, next) {
 			res.redirect('/login');
 		} else {
 			//console.log("found");
-			return res.render('data.ejs', { "name": data.username, "email": data.email });
+			return res.render('data.pug', { "username": data.username, "useremail": data.email });
 		}
 	});
 });
@@ -114,7 +114,7 @@ router.get('/logout', function (req, res, next) {
 });
 
 router.get('/forgetpass', function (req, res, next) {
-	res.render("forget.ejs");
+	res.render("forget.pug");
 });
 
 router.post('/forgetpass', function (req, res, next) {

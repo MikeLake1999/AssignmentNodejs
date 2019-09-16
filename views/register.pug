@@ -1,0 +1,59 @@
+doctype html
+head
+  title Auth
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  link(rel='stylesheet' href='./css/main.css')
+  
+  script(type='text/javascript').
+    $(document).ready(function(){
+    $( "#form1" ).submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+    type: 'POST',
+    url: '/register',
+    data: $('#form1').serialize(),
+    dataType: "json",
+    success: function(response){
+    //alert("a");
+    //console.log(response.Success);
+    $('#form1')[0].reset();
+    document.getElementById("check").innerHTML=response.Success;
+    //ADD THIS CODE
+    setTimeout(function(){
+    document.getElementById("check").innerHTML="";
+    },3000);
+    if (response.Success=="You are regestered,You can login now.") {
+    document.getElementById("aa").click();
+    };
+    },
+    error: function() {
+    }
+    })
+    });
+    });
+.login-form
+  div
+    
+  .form-group
+  
+    form#form1(method='post')
+      h2.text-center Create Account
+      input.form-control(type='email', name='email', placeholder='E-mail', required='')
+      br
+      input.form-control(type='text', name='username', placeholder='Username', required='')
+      br
+      input.form-control(type='password', name='password', placeholder='Password', required='')
+      br
+      input.form-control(type='password', name='passwordConf', placeholder='Confirm Password', required='')
+      br
+      button.btn.btn-primary.btn-block(type='submit', value='Register') Create
+      .mssg.bg-danger
+        span#check
+  div
+    span
+      | Already Account! 
+      a(href='/login') Login
+  #LangTable
+    a#aa(href='/login')

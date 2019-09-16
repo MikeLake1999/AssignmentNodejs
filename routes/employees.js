@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var employee = require("../controllers/EmployeeController.js");
 
+
 // Get all employees
 router.get('/', function(req, res) {
   employee.list(req, res);

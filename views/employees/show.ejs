@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Employee Detail</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="container">
-      <h3><a href="/employees">Employee List</a></h3>
-      <h1>Employee Detail</h1>
-      <table>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td>:</td>
-            <td><%= employee.name %></td>
-          </tr>
-          <tr>
-            <td>Address</td>
-            <td>:</td>
-            <td><%= employee.address %></td>
-          </tr>
-          <tr>
-            <td>Position</td>
-            <td>:</td>
-            <td><%= employee.position %></td>
-          </tr>
-          <tr>
-            <td>Salary</td>
-            <td>:</td>
-            <td>$<%= employee.salary %>/year</td>
-          </tr>
-        </tbody>
-      </table>
-      <h3><a href="/employees/edit/<%= employee._id%>">EDIT</a></h3>
-      <form action="/employees/delete/<%= employee._id%>" method="post">
-        <button type="submit">DELETE</button>
-      </form>
-    </div>
-  </body>
+
+<head>
+  <title>Employee Detail</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css' />
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+      <h1 class="text-center">Remove Employee</h1>
+      <div>
+          
+          <a href="/employees" class="btn btn-success">Employee List</a>
+      </div>
+    <form class="container" method="post" action="/employees/delete/<%= employee._id%>">
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" name="name" class="form-control" value="<%= employee.name %>" required maxlength="50">
+      </div>
+      <div class="form-group">
+        <label>Address:</label>
+        <input class="form-control" name="address" value="<%= employee.address %>" required maxlength="50">
+      </div>
+      <div class="form-group">
+        <label>Position:</label>
+        <input class="form-control" name="position" value="<%= employee.position %>" required maxlength="50">
+      </div>
+      <div class="form-group">
+        <label>Salary:</label>
+        <input class="form-control" name="salary" value="<%= employee.salary %>" required maxlength="50">
+      </div>
+
+      <button type="submit" class="btn btn-danger">Remove</button>
+    </form>
+    
+    
+  </div>
+</body>
+
 </html>
